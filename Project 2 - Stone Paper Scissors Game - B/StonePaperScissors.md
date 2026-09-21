@@ -996,7 +996,7 @@ In interactive terminal applications, visual polish matters. Rather than printin
 
 ```text
 ======================================
-|  SCORE: Nikhil [ 1 ] - System [ 0 ]  |
+| SCORE: Nikhil [ 1 ] - System [ 0 ] |
 ======================================
 ```
 
@@ -1047,7 +1047,7 @@ Think of drawing the lower steel beam to close the scoreboard box.
 
 ```text
 ======================================
-|  SCORE: Nikhil [ 1 ] - System [ 0 ]  |
+| SCORE: Nikhil [ 1 ] - System [ 0 ] |
 ======================================
 ```
 
@@ -1184,7 +1184,7 @@ System chose: Scissors
 Result: Stone crushes Scissors! Nikhil wins Round 1!
 
 ======================================
-|  SCORE: Nikhil [ 1 ] - System [ 0 ]  |
+| SCORE: Nikhil [ 1 ] - System [ 0 ] |
 ======================================
 ```
 
@@ -1347,7 +1347,7 @@ System chose: Scissors
 Result: Stone crushes Scissors! Nikhil wins Round 1!
 
 ======================================
-|  SCORE: Nikhil [ 1 ] - System [ 0 ]  |
+| SCORE: Nikhil [ 1 ] - System [ 0 ] |
 ======================================
 
 --- Round 2 ---
@@ -1363,7 +1363,7 @@ System chose: Stone
 Result: Paper covers Stone! Nikhil wins Round 2!
 
 ======================================
-|  SCORE: Nikhil [ 2 ] - System [ 0 ]  |
+| SCORE: Nikhil [ 2 ] - System [ 0 ] |
 ======================================
 
 --- Round 3 ---
@@ -1379,7 +1379,7 @@ System chose: Scissors
 Result: Stone crushes Scissors! Nikhil wins Round 3!
 
 ======================================
-|  SCORE: Nikhil [ 3 ] - System [ 0 ]  |
+| SCORE: Nikhil [ 3 ] - System [ 0 ] |
 ======================================
 
 ===== MATCH FINISHED =====
