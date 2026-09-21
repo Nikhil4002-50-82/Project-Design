@@ -1408,6 +1408,7 @@ Think of handing over the microphone and opening play to the contestants.
 
 ```text
 Welcome to Hangman!
+
 ===== NEW HANGMAN GAME =====
 A secret word has been chosen with 6 letters. Good luck!
 ```
