@@ -353,7 +353,12 @@ Stone Paper Scissors is played between two opponents: the **Human Player** and t
 
 The game rules form a directed cycle where each move defeats exactly one other move and loses to exactly one other move:
 
-![Move Hierarchy Cycle](diagram_move_cycle.png)
+```mermaid
+flowchart TD
+    Stone["Stone"] -- "crushes" --> Scissors["Scissors"]
+    Scissors -- "cuts" --> Paper["Paper"]
+    Paper -- "covers" --> Stone["Stone"]
+```
 
 The outcomes are governed by three immutable rules:
 
@@ -387,7 +392,23 @@ Rather than playing a single throwaway round, a match is played in a competitive
 
 Chronologically, a complete application session proceeds through five distinct stages:
 
-![Chronological Match Execution Flow](diagram_match_flow.png)
+```mermaid
+flowchart TD
+    A["Start Application"] --> B["Display Welcome Banner"]
+    B --> C["Prompt for Player Name"]
+    C --> D["Initialize Player & System Entities"]
+    D --> E["Start New Match (Round = 1)"]
+    E --> F["Collect Player & System Moves"]
+    F --> G["Evaluate Round Winner & Reason"]
+    G --> H["Update Scores & Render Scoreboard"]
+    H --> I{"Any Score >= 3?"}
+    I -- "No" --> J["Round = Round + 1"]
+    J --> F
+    I -- "Yes" --> K["Announce Match Champion"]
+    K --> L{"Play Again? (y/n)"}
+    L -- "Yes" --> E
+    L -- "No" --> M["Print Farewell & Exit"]
+```
 
 1. **System Inception & Greeting**: Launch the program, display the executive welcome banner, and prompt the player for their name.
 
@@ -407,7 +428,37 @@ Chronologically, a complete application session proceeds through five distinct s
 
 Splitting the system into discrete classes isolates responsibilities and makes the code modular, intuitive, and testable:
 
-![OOP Class Hierarchy](diagram_oop_class.png)
+```mermaid
+classDiagram
+    direction BT
+    class RoundResult {
+        +String winner
+        +String reason
+    }
+    class Player {
+        +String name
+        +int score
+        +chooseMove()
+        +resetScore()
+    }
+    class SystemPlayer {
+        +chooseMove()
+    }
+    class Game {
+        +Player player
+        +SystemPlayer system
+        +int targetScore
+        +displayScore()
+        +playRound(roundNum)
+        +announceChampion()
+        +playMatch()
+        +askReplay()
+        +playMany()
+    }
+    SystemPlayer --|> Player : inherits
+    Game *-- Player : manages
+    Game *-- SystemPlayer : manages
+```
 
 | Component | Responsibility |
 |---|---|
@@ -705,13 +756,7 @@ Think of handing the player a menu card with clear options.
     <span class="step-title">Display Choice Menu</span>
   </div>
   <ul>
-    <li>[ ] Print the choice menu:
-      <pre><code>&lt;name&gt;, choose your move:
-  [1] Stone
-  [2] Paper
-  [3] Scissors
-Enter choice (1-3): </code></pre>
-    </li>
+    <li>[ ] Print the choice menu displaying the player name and numbered options for <code>[1] Stone</code>, <code>[2] Paper</code>, and <code>[3] Scissors</code>, prompting with <code>"Enter choice (1-3): "</code>.</li>
   </ul>
 </div>
 
@@ -981,7 +1026,7 @@ Think of formatting the team names and current scores neatly in the middle of th
     <span class="step-title">Format Scoreboard Content</span>
   </div>
   <ul>
-    <li>[ ] Construct the score text: <code>"SCORE: " + player.name + " [ " + player.score + " ] - System [ " + system.score + " ]"</code>. Center this text within 34 characters, then enclose it between <code>| </code> and <code> |</code> (a single space of padding before each pipe) to produce a 38-character line matching the borders above and below.</li>
+    <li>[ ] Construct the score text: <code>"SCORE: " + player.name + " [ " + player.score + " ] - System [ " + system.score + " ]"</code>. Center this text within 34 characters and enclose with <code>|</code>.</li>
   </ul>
 </div>
 
@@ -1248,10 +1293,7 @@ Think of the tournament master announcing the rules before opening play.
     <span class="step-title">Print Match Start Banner</span>
   </div>
   <ul>
-    <li>[ ] Print:
-      <pre><code>\n===== NEW MATCH STARTED =====
-First to reach 3 points wins the match!</code></pre>
-    </li>
+    <li>[ ] Print the match start banner: <code>"\n===== NEW MATCH STARTED =====\nFirst to reach 3 points wins the match!"</code>.</li>
   </ul>
 </div>
 
@@ -1797,7 +1839,7 @@ CLASS Game:
 
         // Step 2: Format Scoreboard Content
         scoreText = "SCORE: " + player.name + " [ " + player.score + " ] - System [ " + system.score + " ]"
-        PRINT scoreText centered within 34 characters, enclosed by "| " and " |" (38 characters total, matching the border)
+        PRINT scoreText centered within 34 characters enclosed by "|"
 
         // Step 3: Print Scoreboard Bottom Border
         PRINT "======================================"
