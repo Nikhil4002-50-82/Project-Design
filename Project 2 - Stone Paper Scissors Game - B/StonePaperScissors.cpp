@@ -236,9 +236,15 @@ public:
             string answer;
             if (!getline(cin, answer)) return false;
 
+            transform(answer.begin(), answer.end(), answer.begin(), ::tolower);
+            answer.erase(0, answer.find_first_not_of(" \t\r\n"));
+            if (!answer.empty()) {
+                answer.erase(answer.find_last_not_of(" \t\r\n") + 1);
+            }
+
             // Step 3: Evaluate Replay Choice
-            if (answer == "y" || answer == "Y") return true;
-            if (answer == "n" || answer == "N") return false;
+            if (answer == "y") return true;
+            if (answer == "n") return false;
 
             cout << "Please type y or n.\n";
         }
