@@ -132,10 +132,14 @@ public:
         while (start < rawName.size() && (rawName[start] == ' ' || rawName[start] == '\t')) {
             start++;
         }
-        if (start == rawName.size()) {
+        size_t end = rawName.size();
+        while (end > start && (rawName[end - 1] == ' ' || rawName[end - 1] == '\t')) {
+            end--;
+        }
+        if (start == end) {
             name = "Player";
         } else {
-            name = rawName.substr(start);
+            name = rawName.substr(start, end - start);
         }
         // Step 2: Card Ownership & Victory Flag
         card = Card();
@@ -301,6 +305,18 @@ public:
             string answer;
             getline(cin, answer);
             // Step 2: Sanitization & Normalized Matching
+            size_t start = 0;
+            while (start < answer.size() && (answer[start] == ' ' || answer[start] == '\t')) {
+                start++;
+            }
+            size_t end = answer.size();
+            while (end > start && (answer[end - 1] == ' ' || answer[end - 1] == '\t')) {
+                end--;
+            }
+            answer = answer.substr(start, end - start);
+            for (char& c : answer) {
+                c = static_cast<char>(tolower(static_cast<unsigned char>(c)));
+            }
             if (answer == "y") return true;
             if (answer == "n") return false;
             cout << "Please type y or n.\n";
