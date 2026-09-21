@@ -226,8 +226,8 @@ Every well-engineered application starts with a clean greeting that informs the 
 
 Establish the application entry file and output the initial greeting banner:
 
-Think of the opening curtain of a theater stage before the actors emerge.  
-*Goal*: Print the official game title to the terminal standard output.
+Think of laying the foundation stones and unlocking your workbench before assembling a project.  
+*Goal*: Create your project source file and import foundational standard modules.
 
 <div class="step-card">
   <div class="step-header">
@@ -239,6 +239,9 @@ Think of the opening curtain of a theater stage before the actors emerge.
     <li>[ ] Include required foundational standard libraries and establish the primary module namespace.</li>
   </ul>
 </div>
+
+Think of illuminated neon signage outside an arcade signaling that the game is open and running.  
+*Goal*: Print the official game title to the terminal standard output.
 
 <div class="step-card">
   <div class="step-header">
@@ -256,7 +259,6 @@ Think of the opening curtain of a theater stage before the actors emerge.
 ```text
 Welcome to Hangman!
 ```
-
 
 ### Milestone Checkpoint: Welcome Banner Functional!
 
@@ -278,8 +280,8 @@ Hangman requires an approved vocabulary list from which mystery words are picked
 
 Define the immutable word list, lives limit, and ASCII gallows illustrations:
 
-Think of loading the game cartridge with puzzle words, drawing 6 empty hearts on the health bar, and sketching the stages of the gallows.  
-*Goal*: Provide constant data collections that govern game difficulty and visuals.
+Think of loading a card deck with approved mystery vocabulary words.  
+*Goal*: Declare the constant list/array of uppercase mystery puzzle words.
 
 <div class="step-card">
   <div class="step-header">
@@ -291,6 +293,9 @@ Think of loading the game cartridge with puzzle words, drawing 6 empty hearts on
   </ul>
 </div>
 
+Think of painting 6 full hearts on a classic video game life bar.  
+*Goal*: Establish the maximum allowable mistake threshold as an immutable constant.
+
 <div class="step-card">
   <div class="step-header">
     <span class="step-badge">STEP 2</span>
@@ -301,6 +306,9 @@ Think of loading the game cartridge with puzzle words, drawing 6 empty hearts on
   </ul>
 </div>
 
+Think of sketching out an artist's flipbook where each page adds one line to the drawing.  
+*Goal*: Store the 7 progressive multiline ASCII gallows strings in an indexed collection.
+
 <div class="step-card">
   <div class="step-header">
     <span class="step-badge">STEP 3</span>
@@ -310,7 +318,6 @@ Think of loading the game cartridge with puzzle words, drawing 6 empty hearts on
     <li>[ ] Declare a list or array named <code>STAGES</code> containing 7 multiline ASCII strings representing mistake counts from 0 (empty gallows) up to 6 (full figure / Game Over).</li>
   </ul>
 </div>
-
 
 ### Milestone Checkpoint: Game Configuration Defined!
 
@@ -471,8 +478,8 @@ In Hangman, the player must never see the full secret word until they have corre
 
 Construct the formatted string displaying guessed letters and underscores:
 
-Think of a word puzzle board where solved letters are flipped over while mystery letters remain face-down tiles.  
-*Goal*: Generate a user-facing masked representation like `"P _ _ _ E _"`.
+Think of laying out an empty tray of tile holders matching the length of the secret word.  
+*Goal*: Prepare an empty collection container to hold the display characters.
 
 <div class="step-card">
   <div class="step-header">
@@ -483,6 +490,9 @@ Think of a word puzzle board where solved letters are flipped over while mystery
     <li>[ ] Initialize an empty collection or accumulator named <code>display_chars</code> (or <code>masked</code>).</li>
   </ul>
 </div>
+
+Think of flipping over only those tiles on the puzzle board whose letters have been called.  
+*Goal*: Iterate through the secret word, adding the revealed letter if guessed or an underscore if unsolved.
 
 <div class="step-card">
   <div class="step-header">
@@ -495,6 +505,9 @@ Think of a word puzzle board where solved letters are flipped over while mystery
   </ul>
 </div>
 
+Think of spacing tiles neatly across the game table with a single gap between each space.  
+*Goal*: Join all display characters with single space delimiters and return the resulting masked string.
+
 <div class="step-card">
   <div class="step-header">
     <span class="step-badge">STEP 3</span>
@@ -504,7 +517,6 @@ Think of a word puzzle board where solved letters are flipped over while mystery
     <li>[ ] Combine characters with space delimiters and return the final string.</li>
   </ul>
 </div>
-
 
 ### Milestone Checkpoint: Masked Word Generator Operational!
 
@@ -528,8 +540,8 @@ To determine if the player has won the game, we must verify whether every charac
 
 Verify if all letters of the secret word are present in the guessed letters set:
 
-Think of checking if every blank on an answer sheet has been filled in with a correct answer.  
-*Goal*: Return `True` if the player has completely solved the secret word, `False` otherwise.
+Think of a puzzle inspector checking the board for any remaining blank spaces.  
+*Goal*: Iterate through the secret word to verify whether any character has not yet been guessed.
 
 <div class="step-card">
   <div class="step-header">
@@ -542,6 +554,9 @@ Think of checking if every blank on an answer sheet has been filled in with a co
   </ul>
 </div>
 
+Think of sounding the victory buzzer the moment every single tile is uncovered.  
+*Goal*: Return `False` if any unsolved letter is found, or `True` once all letters are solved.
+
 <div class="step-card">
   <div class="step-header">
     <span class="step-badge">STEP 2</span>
@@ -551,7 +566,6 @@ Think of checking if every blank on an answer sheet has been filled in with a co
     <li>[ ] If the loop completes without finding any missing letters, return <code>True</code>.</li>
   </ul>
 </div>
-
 
 ### Milestone Checkpoint: Win Condition Logic Verified!
 
@@ -578,8 +592,8 @@ Presenting information clearly is vital in CLI games. The player needs to see an
 
 Format previous guesses into an alphabetically sorted, comma-separated string:
 
-Think of neatly arranging letter tiles in alphabetical order so the player can quickly see which letters they have already used.  
-*Goal*: Return `"None"` if no letters have been guessed yet, or a sorted string like `"A, E, P, T"`.
+Think of filing index cards in alphabetical order from A to Z so they are effortless to scan.  
+*Goal*: Sort the accumulated guessed letters collection into alphabetical order.
 
 <div class="step-card">
   <div class="step-header">
@@ -592,6 +606,9 @@ Think of neatly arranging letter tiles in alphabetical order so the player can q
   </ul>
 </div>
 
+Think of printing a neat roster list on a scoreboard banner.  
+*Goal*: Return `"None"` if no letters have been guessed, or join the sorted letters with `", "` separators.
+
 <div class="step-card">
   <div class="step-header">
     <span class="step-badge">STEP 2</span>
@@ -601,7 +618,6 @@ Think of neatly arranging letter tiles in alphabetical order so the player can q
     <li>[ ] Join the sorted letters with comma-space delimiters (<code>", "</code>) and return the resulting string.</li>
   </ul>
 </div>
-
 
 ### Milestone Checkpoint: Guessed Letters Formatter Functional!
 
@@ -620,8 +636,8 @@ Execute `format_guessed_letters(['Z', 'A', 'M'])` -> verify `"A, M, Z"`.
 
 Display the complete visual state of the game board in the console:
 
-Think of updating an electronic scoreboard that shows the gallows diagram, current masked word, used letters, and lives remaining.  
-*Goal*: Print the ASCII art stage, the masked word, previous guesses, and remaining lives count.
+Think of flipping to the exact page of the flipbook matching the player's current mistake count.  
+*Goal*: Retrieve and print `STAGES[wrong_guesses]` from the gallows art collection.
 
 <div class="step-card">
   <div class="step-header">
@@ -633,6 +649,9 @@ Think of updating an electronic scoreboard that shows the gallows diagram, curre
   </ul>
 </div>
 
+Think of illuminating the mystery puzzle board so the player sees their current progress.  
+*Goal*: Call `get_masked_word()` and print the spaced secret word representation.
+
 <div class="step-card">
   <div class="step-header">
     <span class="step-badge">STEP 2</span>
@@ -643,6 +662,9 @@ Think of updating an electronic scoreboard that shows the gallows diagram, curre
   </ul>
 </div>
 
+Think of displaying a side panel showing all previously called letters.  
+*Goal*: Call `format_guessed_letters()` and print the used letter roster.
+
 <div class="step-card">
   <div class="step-header">
     <span class="step-badge">STEP 3</span>
@@ -652,6 +674,9 @@ Think of updating an electronic scoreboard that shows the gallows diagram, curre
     <li>[ ] Call <code>format_guessed_letters(guessed_letters)</code> and print the guessed letters line.</li>
   </ul>
 </div>
+
+Think of a digital health gauge displaying remaining hit points out of maximum capacity.  
+*Goal*: Calculate remaining lives and print the formatted tally (`lives_left / MAX_LIVES`).
 
 <div class="step-card">
   <div class="step-header">
@@ -678,7 +703,6 @@ Guessed letters: E, P
 Lives remaining: 6 / 6
 ```
 
-
 ### Milestone Checkpoint: Visual Board Display Operational!
 
 You have assembled the complete game state visualizer:
@@ -696,6 +720,7 @@ Execute `display_board(2, "PYTHON", ['P', 'O'])`. Verify that stage 2 (head + to
 **Defensive Programming: CLI Input Validation**
 
 Players can type anything into a terminal: lowercase letters, multiple letters, symbols, numbers, or empty strings. A robust application must never crash when unexpected input is received. We build a modular 3-stage validation pipeline:
+
 1. Read raw text and normalize to uppercase.
 2. Validate that input is exactly 1 alphabetic character.
 3. Check against already guessed letters and prompt until valid.
@@ -704,8 +729,8 @@ Players can type anything into a terminal: lowercase letters, multiple letters, 
 
 Prompt the player and convert raw text into an uppercase character string:
 
-Think of a clerk asking for an ID and immediately recording the letters in clean capital print.  
-*Goal*: Read a line of terminal input, trim surrounding whitespace, and convert to uppercase.
+Think of the game host stepping forward and asking the player for their letter choice.  
+*Goal*: Display an interactive terminal prompt asking for a single letter.
 
 <div class="step-card">
   <div class="step-header">
@@ -716,6 +741,9 @@ Think of a clerk asking for an ID and immediately recording the letters in clean
     <li>[ ] Display the input prompt <code>"\nEnter your guess (a single letter): "</code> without a trailing newline.</li>
   </ul>
 </div>
+
+Think of cleaning off excess ink and stamping a neat uppercase letter on an official ballot.  
+*Goal*: Strip leading/trailing whitespace and convert the input string to uppercase.
 
 <div class="step-card">
   <div class="step-header">
@@ -733,7 +761,6 @@ Think of a clerk asking for an ID and immediately recording the letters in clean
 Enter your guess (a single letter): e
 ```
 
-
 ### Milestone Checkpoint: Raw Input Capture Operational!
 
 You have built the input reader and normalizer:
@@ -747,8 +774,8 @@ You have built the input reader and normalizer:
 
 Verify that the input consists of exactly one alphabetic character (A-Z):
 
-Think of a turnstile gate that only permits a single, valid coin to pass through.  
-*Goal*: Return `True` if the string length is 1 and the character is alphabetic, `False` otherwise.
+Think of a coin slot with an exact aperture that rejects anything that is not a single token.  
+*Goal*: Confirm that the trimmed input string has a length of exactly 1 character.
 
 <div class="step-card">
   <div class="step-header">
@@ -760,6 +787,9 @@ Think of a turnstile gate that only permits a single, valid coin to pass through
   </ul>
 </div>
 
+Think of an automated filter that discards numbers, symbols, and punctuation marks.  
+*Goal*: Verify that the single character belongs strictly to the alphabet (`A-Z`).
+
 <div class="step-card">
   <div class="step-header">
     <span class="step-badge">STEP 2</span>
@@ -769,7 +799,6 @@ Think of a turnstile gate that only permits a single, valid coin to pass through
     <li>[ ] Check if the single character is an alphabetic letter (A through Z).</li>
   </ul>
 </div>
-
 
 ### Milestone Checkpoint: Character Format Validation Functional!
 
@@ -787,8 +816,8 @@ Verify `is_valid_format("A")` is `True`. Verify `is_valid_format("AB")`, `is_val
 
 Combine format validation with duplicate checking in an interactive retry loop:
 
-Think of a friendly referee checking the rulebook: if you type something invalid or repeat a move, they patiently ask you to try again.  
-*Goal*: Re-prompt the user until they supply a new, un-guessed uppercase letter.
+Think of checking the player's discard pile to confirm this letter has not already been played.  
+*Goal*: Check whether the valid uppercase character already exists in the `guessed_letters` collection.
 
 <div class="step-card">
   <div class="step-header">
@@ -799,6 +828,9 @@ Think of a friendly referee checking the rulebook: if you type something invalid
     <li>[ ] Check if the sanitized candidate letter already exists in <code>guessed_letters</code>.</li>
   </ul>
 </div>
+
+Think of a referee politely reminding the player that a move has already been used.  
+*Goal*: Print an informative message letting the player know they already guessed that letter.
 
 <div class="step-card">
   <div class="step-header">
@@ -811,6 +843,9 @@ Think of a friendly referee checking the rulebook: if you type something invalid
   </ul>
 </div>
 
+Think of a turnstile that remains locked until a valid, fresh token is provided.  
+*Goal*: Wrap validation inside an indefinite loop, returning only when a clean, unique letter is received.
+
 <div class="step-card">
   <div class="step-header">
     <span class="step-badge">STEP 3</span>
@@ -820,7 +855,6 @@ Think of a friendly referee checking the rulebook: if you type something invalid
     <li>[ ] Wrap in a <code>while True</code> loop and return the valid letter as soon as all conditions pass.</li>
   </ul>
 </div>
-
 
 ### Milestone Checkpoint: Defensive Guess Pipeline Complete!
 
@@ -844,8 +878,8 @@ Now that all standalone utilities are operational, we encapsulate the dynamic ro
 
 Initialize the `Hangman` class attributes and state variables:
 
-Think of preparing a blank game sheet before a word has been chosen: empty secret word, empty guess list, zero mistakes.  
-*Goal*: Create the `Hangman` class with initialized attributes.
+Think of reserving a blank slate inside an envelope before the mystery word is chosen.  
+*Goal*: Initialize the `secret_word` instance variable to an empty string.
 
 <div class="step-card">
   <div class="step-header">
@@ -857,6 +891,9 @@ Think of preparing a blank game sheet before a word has been chosen: empty secre
   </ul>
 </div>
 
+Think of placing an empty notebook on the desk to track incoming guesses.  
+*Goal*: Initialize `guessed_letters` to an empty list or collection.
+
 <div class="step-card">
   <div class="step-header">
     <span class="step-badge">STEP 2</span>
@@ -867,6 +904,9 @@ Think of preparing a blank game sheet before a word has been chosen: empty secre
   </ul>
 </div>
 
+Think of setting the scoreboard mistake counter to zero before opening kickoff.  
+*Goal*: Initialize the `wrong_guesses` integer counter to 0.
+
 <div class="step-card">
   <div class="step-header">
     <span class="step-badge">STEP 3</span>
@@ -876,7 +916,6 @@ Think of preparing a blank game sheet before a word has been chosen: empty secre
     <li>[ ] Initialize instance attribute <code>self.wrong_guesses = 0</code> (or <code>wrongGuesses = 0</code>).</li>
   </ul>
 </div>
-
 
 ### Milestone Checkpoint: Hangman State Initialized!
 
@@ -891,8 +930,8 @@ You have created the object-oriented state holder:
 
 Select a new random secret word and clear round variables for a fresh match:
 
-Think of shuffling a deck of word cards, drawing a new card face-down, and clearing the chalkboard.  
-*Goal*: Set `secret_word` to a randomly chosen item from `WORDS`, clear `guessed_letters`, and reset `wrong_guesses` to 0.
+Think of reaching into a bingo hopper and drawing one secret word at random.  
+*Goal*: Select a random word from `WORDS` and assign it to `self.secret_word`.
 
 <div class="step-card">
   <div class="step-header">
@@ -904,6 +943,9 @@ Think of shuffling a deck of word cards, drawing a new card face-down, and clear
   </ul>
 </div>
 
+Think of wiping the whiteboard completely clean between matches.  
+*Goal*: Clear all entries from the `guessed_letters` collection.
+
 <div class="step-card">
   <div class="step-header">
     <span class="step-badge">STEP 2</span>
@@ -914,6 +956,9 @@ Think of shuffling a deck of word cards, drawing a new card face-down, and clear
   </ul>
 </div>
 
+Think of resetting the gallows scaffold back to its pristine, empty starting position.  
+*Goal*: Set `self.wrong_guesses = 0`.
+
 <div class="step-card">
   <div class="step-header">
     <span class="step-badge">STEP 3</span>
@@ -923,7 +968,6 @@ Think of shuffling a deck of word cards, drawing a new card face-down, and clear
     <li>[ ] Set <code>wrong_guesses = 0</code>.</li>
   </ul>
 </div>
-
 
 ### Milestone Checkpoint: Game Reset & Word Selection Operational!
 
@@ -942,6 +986,7 @@ Instantiate `game = Hangman()` and call `reset_game()`. Verify `game.secret_word
 **Registering Letters & Decrementing Lives**
 
 When a player inputs a valid letter, two actions must occur:
+
 1. The letter is added to `guessed_letters`.
 2. If the letter is in `secret_word`, praise the player; if not, increment `wrong_guesses` and notify the player.
 
@@ -949,8 +994,8 @@ When a player inputs a valid letter, two actions must occur:
 
 Process an individual letter guess and update game state:
 
-Think of checking if a guessed letter appears on the puzzle board: if yes, celebrate; if no, draw the next part of the gallows figure.  
-*Goal*: Append `letter` to `guessed_letters`, check membership in `secret_word`, and update `wrong_guesses` accordingly.
+Think of logging a contestant's official answer into the match record.  
+*Goal*: Append the validated `letter` into `self.guessed_letters`.
 
 <div class="step-card">
   <div class="step-header">
@@ -962,6 +1007,9 @@ Think of checking if a guessed letter appears on the puzzle board: if yes, celeb
   </ul>
 </div>
 
+Think of celebratory bells ringing when a contestant hits a bullseye.  
+*Goal*: If `letter` is in `self.secret_word`, print a positive confirmation message.
+
 <div class="step-card">
   <div class="step-header">
     <span class="step-badge">STEP 2</span>
@@ -971,6 +1019,9 @@ Think of checking if a guessed letter appears on the puzzle board: if yes, celeb
     <li>[ ] If <code>letter in self.secret_word</code>, print <code>"\nGood guess! '{letter}' is in the word!"</code>.</li>
   </ul>
 </div>
+
+Think of a warning buzzer sounding while an extra life token is removed.  
+*Goal*: If `letter` is not in `self.secret_word`, increment `self.wrong_guesses` by 1 and print an informative miss notice.
 
 <div class="step-card">
   <div class="step-header">
@@ -987,7 +1038,6 @@ Think of checking if a guessed letter appears on the puzzle board: if yes, celeb
 ```text
 Good guess! 'P' is in the word!
 ```
-
 
 ### Milestone Checkpoint: Guess Processing & Lives Deduction Verified!
 
@@ -1006,8 +1056,8 @@ Set `game.secret_word = "ROBOT"`. Call `game.process_guess("O")` -> verify `game
 
 Render the final board state and announce whether the player won or ran out of lives:
 
-Think of the tournament master delivering the final verdict: cheering the champion or revealing the answer that got away.  
-*Goal*: Render the final board, check `is_word_guessed()`, and print the appropriate victory or game-over banner.
+Think of freezing the game field and displaying the final scoreboard for all to see.  
+*Goal*: Call `display_board()` with the final state so the full picture is visible.
 
 <div class="step-card">
   <div class="step-header">
@@ -1019,6 +1069,9 @@ Think of the tournament master delivering the final verdict: cheering the champi
   </ul>
 </div>
 
+Think of crowning a triumphant champion under stadium spotlights.  
+*Goal*: If `is_word_guessed()` returns `True`, print a celebratory victory proclamation.
+
 <div class="step-card">
   <div class="step-header">
     <span class="step-badge">STEP 2</span>
@@ -1028,6 +1081,9 @@ Think of the tournament master delivering the final verdict: cheering the champi
     <li>[ ] If <code>is_word_guessed()</code> is <code>True</code>, print <code>"\nCONGRATULATIONS! You solved the secret word: {self.secret_word}!"</code>.</li>
   </ul>
 </div>
+
+Think of lifting the mystery curtain after time expires to reveal the hidden answer.  
+*Goal*: If lives are exhausted, print a polite game-over message revealing the secret word.
 
 <div class="step-card">
   <div class="step-header">
@@ -1056,7 +1112,6 @@ Lives remaining: 6 / 6
 CONGRATULATIONS! You solved the secret word: PLANET!
 ```
 
-
 ### Milestone Checkpoint: Game Outcome Presentation Operational!
 
 You have implemented outcome resolution:
@@ -1076,8 +1131,8 @@ A single match orchestrates the full turn lifecycle: resetting state, displaying
 
 Tie all round mechanisms together into `play_round()`:
 
-Think of the conductor leading an orchestra through every movement of a symphony until the finale.  
-*Goal*: Drive the turn loop while `wrong_guesses < MAX_LIVES` and `not is_word_guessed()`.
+Think of preparing the arena for opening round by clearing the board and drawing a new secret word.  
+*Goal*: Call `self.reset_game()` to initialize a fresh round.
 
 <div class="step-card">
   <div class="step-header">
@@ -1089,6 +1144,9 @@ Think of the conductor leading an orchestra through every movement of a symphony
   </ul>
 </div>
 
+Think of the master of ceremonies announcing the start of a brand new puzzle game.  
+*Goal*: Output the new game header banner and announce the secret word's letter length.
+
 <div class="step-card">
   <div class="step-header">
     <span class="step-badge">STEP 2</span>
@@ -1099,16 +1157,22 @@ Think of the conductor leading an orchestra through every movement of a symphony
   </ul>
 </div>
 
+Think of rounds ticking by like consecutive innings in a baseball match.  
+*Goal*: While `wrong_guesses < MAX_LIVES` and not `is_word_guessed()`, display the board, collect a guess, and process it.
+
 <div class="step-card">
   <div class="step-header">
     <span class="step-badge">STEP 3</span>
     <span class="step-title">Run Turn Loop While Alive and Unsolved</span>
   </div>
   <ul>
-    <li>[ ] While <code>self.wrong_guesses &lt; MAX_LIVES</code> and <code>not is_word_guessed(self.secret_word, self.guessed_letters)</code>:</li>
+    <li>[ ] While <code>self.wrong_guesses < MAX_LIVES</code> and <code>not is_word_guessed(self.secret_word, self.guessed_letters)</code>:</li>
     <li>[ ] Render board via <code>display_board(self.wrong_guesses, self.secret_word, self.guessed_letters)</code>, collect guess via <code>get_valid_guess(self.guessed_letters)</code>, and process guess via <code>self.process_guess(guess)</code>.</li>
   </ul>
 </div>
+
+Think of blowing the final whistle and delivering the official match resolution.  
+*Goal*: Call `self.announce_result()` once the gameplay loop terminates.
 
 <div class="step-card">
   <div class="step-header">
@@ -1141,7 +1205,6 @@ Enter your guess (a single letter): e
 Good guess! 'E' is in the word!
 ```
 
-
 ### Milestone Checkpoint: Single-Game Turn Loop Complete!
 
 You have built the complete single-game turn coordinator:
@@ -1163,8 +1226,8 @@ For a polished user experience, players should be able to play multiple games in
 
 Ask the player if they wish to play again, validating `"y"` or `"n"`:
 
-Think of an arcade machine flashing "CONTINUE? (Y/N)" after a game ends.  
-*Goal*: Return `True` if the user confirms replay (`"y"`), `False` if they decline (`"n"`), and re-prompt on invalid input.
+Think of an arcade cabinet flashing "CONTINUE?" waiting patiently for player input.  
+*Goal*: Establish an indefinite loop that persists until valid confirmation is received.
 
 <div class="step-card">
   <div class="step-header">
@@ -1176,6 +1239,9 @@ Think of an arcade machine flashing "CONTINUE? (Y/N)" after a game ends.
   </ul>
 </div>
 
+Think of reading the player's response and smoothing away accidental spaces or case differences.  
+*Goal*: Prompt with `"Play again? (y/n): "`, trim whitespace, and lowercase the input.
+
 <div class="step-card">
   <div class="step-header">
     <span class="step-badge">STEP 2</span>
@@ -1185,6 +1251,9 @@ Think of an arcade machine flashing "CONTINUE? (Y/N)" after a game ends.
     <li>[ ] Read user response, strip whitespace, and convert to lowercase.</li>
   </ul>
 </div>
+
+Think of flipping the power switch to ON or OFF depending on the player's choice.  
+*Goal*: Return `True` for `"y"`, `False` for `"n"`, or print `"Please type y or n."` and re-prompt.
 
 <div class="step-card">
   <div class="step-header">
@@ -1205,7 +1274,6 @@ Please type y or n.
 Play again? (y/n): y
 ```
 
-
 ### Milestone Checkpoint: Rematch Prompt Functional!
 
 You have implemented the replay inquiry mechanism:
@@ -1219,8 +1287,8 @@ You have implemented the replay inquiry mechanism:
 
 Wrap `play_round()` in a continuous multi-match session controller:
 
-Think of sitting down for a complete tournament session, playing as many rounds as you want until you decide to walk away.  
-*Goal*: Run an indefinite loop calling `play_round()`, checking `ask_replay()`, and exiting with a farewell message when finished.
+Think of an arcade cabinet that stays powered on for as many games as the player desires.  
+*Goal*: Establish an indefinite outer session loop to orchestrate continuous play.
 
 <div class="step-card">
   <div class="step-header">
@@ -1232,6 +1300,9 @@ Think of sitting down for a complete tournament session, playing as many rounds 
   </ul>
 </div>
 
+Think of loading and playing through one complete puzzle round.  
+*Goal*: Call `self.play_round()` to run a full single match from start to finish.
+
 <div class="step-card">
   <div class="step-header">
     <span class="step-badge">STEP 2</span>
@@ -1242,6 +1313,9 @@ Think of sitting down for a complete tournament session, playing as many rounds 
   </ul>
 </div>
 
+Think of consulting the player at the end of each round to see if they wish to continue.  
+*Goal*: Call `self.ask_replay()` to evaluate if another game should be launched.
+
 <div class="step-card">
   <div class="step-header">
     <span class="step-badge">STEP 3</span>
@@ -1251,6 +1325,9 @@ Think of sitting down for a complete tournament session, playing as many rounds 
     <li>[ ] Call <code>not self.ask_replay()</code> to evaluate if the player wishes to stop.</li>
   </ul>
 </div>
+
+Think of waving goodbye and thanking guests as they step outside the game center.  
+*Goal*: If the player declines replay, print `"Thanks for playing Hangman!"` and break the loop.
 
 <div class="step-card">
   <div class="step-header">
@@ -1268,7 +1345,6 @@ Think of sitting down for a complete tournament session, playing as many rounds 
 Play again? (y/n): n
 Thanks for playing Hangman!
 ```
-
 
 ### Milestone Checkpoint: Multi-Game Session Engine Complete!
 
@@ -1289,8 +1365,8 @@ With all classes, helpers, and state loops complete, the final step is to assemb
 
 Wire the entire application together inside `main()`:
 
-Think of turning the ignition key in an automobile: the engine hums to life, and the dashboard illuminates ready for your journey.  
-*Goal*: Call `print_welcome()`, create a `Hangman` instance, and call `play_many()`.
+Think of switching on the arena marquee lights to greet visitors.  
+*Goal*: Call `print_welcome()` to render the official application title.
 
 <div class="step-card">
   <div class="step-header">
@@ -1302,6 +1378,9 @@ Think of turning the ignition key in an automobile: the engine hums to life, and
   </ul>
 </div>
 
+Think of deploying the game director to take charge of the tournament.  
+*Goal*: Create a new instance of the `Hangman` class.
+
 <div class="step-card">
   <div class="step-header">
     <span class="step-badge">STEP 2</span>
@@ -1311,6 +1390,9 @@ Think of turning the ignition key in an automobile: the engine hums to life, and
     <li>[ ] Create an instance of <code>Hangman</code> named <code>game</code>.</li>
   </ul>
 </div>
+
+Think of handing over the microphone and opening play to the contestants.  
+*Goal*: Call `game.play_many()` to commence the continuous game session.
 
 <div class="step-card">
   <div class="step-header">
@@ -1329,7 +1411,6 @@ Welcome to Hangman!
 ===== NEW HANGMAN GAME =====
 A secret word has been chosen with 6 letters. Good luck!
 ```
-
 
 ### Milestone Checkpoint: Full Application Experience Achieved!
 
