@@ -251,37 +251,12 @@ Think of the opening curtain of a theater stage before the actors emerge.
   </ul>
 </div>
 
-<div class="lang-tab python"><span class="lang-dot"></span>Python</div>
+**Expected Terminal Interaction & Output:**
 
-```python
-# Task 1 - Create the entry file and print welcome message
-# Step 1: Entry File Setup
-# Step 2: Welcome Banner Output
-def print_welcome():
-    print("Welcome to Hangman!")
+```text
+Welcome to Hangman!
 ```
 
-<div class="lang-tab cpp"><span class="lang-dot"></span>C++</div>
-
-```cpp
-// Task 1 - Create the entry file and print welcome message
-// Step 1: Entry File Setup
-// Step 2: Welcome Banner Output
-void printWelcome() {
-    cout << "Welcome to Hangman!\n";
-}
-```
-
-<div class="lang-tab java"><span class="lang-dot"></span>Java</div>
-
-```java
-// Task 1 - Create the entry file and print welcome message
-// Step 1: Entry File Setup
-// Step 2: Welcome Banner Output
-public static void printWelcome() {
-    System.out.println("Welcome to Hangman!");
-}
-```
 
 ### Milestone Checkpoint: Welcome Banner Functional!
 
@@ -336,120 +311,6 @@ Think of loading the game cartridge with puzzle words, drawing 6 empty hearts on
   </ul>
 </div>
 
-<div class="lang-tab python"><span class="lang-dot"></span>Python</div>
-
-```python
-# Task 2 - Define word pool, maximum lives, and gallows stages
-# Step 1: Declare Secret Word Pool
-WORDS = ["PYTHON", "PLANET", "ROBOT", "GUITAR", "SILVER", "ROCKET", "CODING"]
-
-# Step 2: Declare Maximum Lives Threshold
-MAX_LIVES = 6
-
-# Step 3: Declare Gallows ASCII Art Stages
-STAGES = [
-    # 0 mistakes (6 lives left)
-    """  +---+
-  |   |
-      |
-      |
-      |
-      |
-=========""",
-    # 1 mistake (5 lives left)
-    """  +---+
-  |   |
-  O   |
-      |
-      |
-      |
-=========""",
-    # 2 mistakes (4 lives left)
-    """  +---+
-  |   |
-  O   |
-  |   |
-      |
-      |
-=========""",
-    # 3 mistakes (3 lives left)
-    """  +---+
-  |   |
-  O   |
- /|   |
-      |
-      |
-=========""",
-    # 4 mistakes (2 lives left)
-    """  +---+
-  |   |
-  O   |
- /|\\  |
-      |
-      |
-=========""",
-    # 5 mistakes (1 life left)
-    """  +---+
-  |   |
-  O   |
- /|\\  |
- /    |
-      |
-=========""",
-    # 6 mistakes (0 lives left - Game Over)
-    """  +---+
-  |   |
-  O   |
- /|\\  |
- / \\  |
-      |
-========="""
-]
-```
-
-<div class="lang-tab cpp"><span class="lang-dot"></span>C++</div>
-
-```cpp
-// Task 2 - Define word pool, maximum lives, and gallows stages
-// Step 1: Declare Secret Word Pool
-const vector<string> WORDS = {"PYTHON", "PLANET", "ROBOT", "GUITAR", "SILVER", "ROCKET", "CODING"};
-
-// Step 2: Declare Maximum Lives Threshold
-const int MAX_LIVES = 6;
-
-// Step 3: Declare Gallows ASCII Art Stages
-const vector<string> STAGES = {
-    "  +---+\n  |   |\n      |\n      |\n      |\n      |\n=========",
-    "  +---+\n  |   |\n  O   |\n      |\n      |\n      |\n=========",
-    "  +---+\n  |   |\n  O   |\n  |   |\n      |\n      |\n=========",
-    "  +---+\n  |   |\n  O   |\n /|   |\n      |\n      |\n=========",
-    "  +---+\n  |   |\n  O   |\n /|\\  |\n      |\n      |\n=========",
-    "  +---+\n  |   |\n  O   |\n /|\\  |\n /    |\n      |\n=========",
-    "  +---+\n  |   |\n  O   |\n /|\\  |\n / \\  |\n      |\n========="
-};
-```
-
-<div class="lang-tab java"><span class="lang-dot"></span>Java</div>
-
-```java
-// Task 2 - Define word pool, maximum lives, and gallows stages
-// Step 1: Declare Secret Word Pool
-static final String[] WORDS = {"PYTHON", "PLANET", "ROBOT", "GUITAR", "SILVER", "ROCKET", "CODING"};
-
-// Step 2: Declare Maximum Lives Threshold
-static final int MAX_LIVES = 6;
-
-// Step 3: Declare Gallows ASCII Art Stages
-static final String[] STAGES = {
-    "  +---+\n  |   |\n      |\n      |\n      |\n      |\n=========",
-    "  +---+\n  |   |\n  O   |\n      |\n      |\n      |\n=========",
-    "  +---+\n  |   |\n  O   |\n  |   |\n      |\n      |\n=========",
-    "  +---+\n  |   |\n  O   |\n /|   |\n      |\n      |\n=========",
-    "  +---+\n  |   |\n  O   |\n /|\\  |\n      |\n      |\n=========",
-    "  +---+\n  |   |\n  O   |\n /|\\  |\n /    |\n      |\n=========",
-    "  +---+\n  |   |\n  O   |\n /|\\  |\n / \\  |\n      |\n========="
-};
-```
 
 ### Milestone Checkpoint: Game Configuration Defined!
 
@@ -488,7 +349,28 @@ The rules and visual states are governed by mistake counts:
 
 At any point in the game, the word is displayed with known letters revealed and unsolved letters hidden as underscores (`_`). Each character is separated by a single space for clear readability:
 
-![Masking Evaluation Logic](diagram_masking_logic.png)
+```mermaid
+flowchart TD
+    subgraph Inputs["Inputs"]
+        W["Secret Word: PLANET"]
+        G["Guessed Letters: P, E"]
+    end
+    subgraph Logic["Character Evaluation Loop"]
+        direction TB
+        L1["Letter 1: P in Guesses? -> Reveal 'P'"]
+        L2["Letter 2: L in Guesses? -> Mask '_'"]
+        L3["Letter 3: A in Guesses? -> Mask '_'"]
+        L4["Letter 4: N in Guesses? -> Mask '_'"]
+        L5["Letter 5: E in Guesses? -> Reveal 'E'"]
+        L6["Letter 6: T in Guesses? -> Mask '_'"]
+        L1 --> L2 --> L3 --> L4 --> L5 --> L6
+    end
+    subgraph Output["Output Display"]
+        R["Masked Word: 'P _ _ _ E _'"]
+    end
+    Inputs --> L1
+    L6 --> Output
+```
 
 1. For each character in the secret word, check if it exists in the player's guessed letters list.
 2. If the character has been guessed, keep the letter visible.
@@ -503,7 +385,25 @@ At any point in the game, the word is displayed with known letters revealed and 
 
 A complete application session proceeds through five distinct stages:
 
-![Chronological Match Execution Flow](diagram_match_flow.png)
+```mermaid
+flowchart TD
+    A["Start Application"] --> B["Display Welcome Banner"]
+    B --> C["Instantiate Hangman Game"]
+    C --> D["Pick Random Word from WORDS"]
+    D --> E["Initialize Lives = 6, Guesses = Empty"]
+    E --> F["Display Gallows & Masked Word"]
+    F --> G["Read & Validate Letter Guess"]
+    G --> H{"Letter in Secret Word?"}
+    H -- "Yes" --> I["Announce Correct Guess"]
+    H -- "No" --> J["Deduct 1 Life & Advance Gallows"]
+    I --> K{"Word Solved OR Lives == 0?"}
+    J --> K
+    K -- "No (Game Continues)" --> F
+    K -- "Yes (Round Finished)" --> L["Display Final Board & Announce Result"]
+    L --> M{"Play Again? (y/n)"}
+    M -- "Yes" --> D
+    M -- "No" --> N["Print Farewell & Exit"]
+```
 
 1. **System Inception & Greeting**: Launch the program, display the executive welcome banner, and establish game constants.
 2. **Game State Initialization**: Pick a random secret word, initialize the guessed letters collection to empty, and set wrong guesses to 0.
@@ -519,7 +419,37 @@ A complete application session proceeds through five distinct stages:
 
 Separating the game into helper functions and a stateful `Hangman` class isolates data, simplifies debugging, and enables multi-game sessions:
 
-![OOP Class Hierarchy](diagram_oop_class.png)
+```mermaid
+classDiagram
+    direction BT
+    class HangmanHelperFunctions {
+        +List~String~ WORDS
+        +int MAX_LIVES
+        +List~String~ STAGES
+        +getMaskedWord(word, guesses)
+        +isWordGuessed(word, guesses)
+        +formatGuessedLetters(guesses)
+        +displayBoard(wrongs, word, guesses)
+        +getValidGuess(guesses)
+    }
+    class Hangman {
+        +String secretWord
+        +List~String~ guessedLetters
+        +int wrongGuesses
+        +resetGame()
+        +processGuess(letter)
+        +announceResult()
+        +playRound()
+        +askReplay()
+        +playMany()
+    }
+    class MainProgram {
+        +printWelcome()
+        +main()
+    }
+    MainProgram ..> Hangman : instantiates & runs
+    Hangman ..> HangmanHelperFunctions : uses helpers & constants
+```
 
 | Component | Responsibility |
 |---|---|
@@ -575,77 +505,6 @@ Think of a word puzzle board where solved letters are flipped over while mystery
   </ul>
 </div>
 
-<div class="lang-tab python"><span class="lang-dot"></span>Python</div>
-
-```python
-# Task 3 - Build the masked word string
-# Step 1: Initialize Masked Character Collection
-# Step 2: Iterate Letters and Reveal Guessed Characters
-# Step 3: Join and Return Formatted Masked String
-def get_masked_word(secret_word, guessed_letters):
-    display_chars = []
-    for letter in secret_word:
-        if letter in guessed_letters:
-            display_chars.append(letter)
-        else:
-            display_chars.append("_")
-    return " ".join(display_chars)
-```
-
-<div class="lang-tab cpp"><span class="lang-dot"></span>C++</div>
-
-```cpp
-// Task 3 - Build the masked word string
-// Step 1: Initialize Masked Character Collection
-// Step 2: Iterate Letters and Reveal Guessed Characters
-// Step 3: Join and Return Formatted Masked String
-string getMaskedWord(const string& secretWord, const vector<char>& guessedLetters) {
-    string masked = "";
-    for (size_t i = 0; i < secretWord.size(); ++i) {
-        char c = secretWord[i];
-        bool found = false;
-        for (char g : guessedLetters) {
-            if (g == c) {
-                found = true;
-                break;
-            }
-        }
-        if (found) {
-            masked += c;
-        } else {
-            masked += "_";
-        }
-        if (i + 1 < secretWord.size()) {
-            masked += " ";
-        }
-    }
-    return masked;
-}
-```
-
-<div class="lang-tab java"><span class="lang-dot"></span>Java</div>
-
-```java
-// Task 3 - Build the masked word string
-// Step 1: Initialize Masked Character Collection
-// Step 2: Iterate Letters and Reveal Guessed Characters
-// Step 3: Join and Return Formatted Masked String
-public static String getMaskedWord(String secretWord, List<Character> guessedLetters) {
-    StringBuilder masked = new StringBuilder();
-    for (int i = 0; i < secretWord.length(); i++) {
-        char c = secretWord.charAt(i);
-        if (guessedLetters.contains(c)) {
-            masked.append(c);
-        } else {
-            masked.append("_");
-        }
-        if (i + 1 < secretWord.length()) {
-            masked.append(" ");
-        }
-    }
-    return masked.toString();
-}
-```
 
 ### Milestone Checkpoint: Masked Word Generator Operational!
 
@@ -693,58 +552,6 @@ Think of checking if every blank on an answer sheet has been filled in with a co
   </ul>
 </div>
 
-<div class="lang-tab python"><span class="lang-dot"></span>Python</div>
-
-```python
-# Task 4 - Check word completion status
-# Step 1: Scan Secret Word for Unsolved Letters
-# Step 2: Return Boolean Guess Status
-def is_word_guessed(secret_word, guessed_letters):
-    for letter in secret_word:
-        if letter not in guessed_letters:
-            return False
-    return True
-```
-
-<div class="lang-tab cpp"><span class="lang-dot"></span>C++</div>
-
-```cpp
-// Task 4 - Check word completion status
-// Step 1: Scan Secret Word for Unsolved Letters
-// Step 2: Return Boolean Guess Status
-bool isWordGuessed(const string& secretWord, const vector<char>& guessedLetters) {
-    for (char c : secretWord) {
-        bool found = false;
-        for (char g : guessedLetters) {
-            if (g == c) {
-                found = true;
-                break;
-            }
-        }
-        if (!found) {
-            return false;
-        }
-    }
-    return true;
-}
-```
-
-<div class="lang-tab java"><span class="lang-dot"></span>Java</div>
-
-```java
-// Task 4 - Check word completion status
-// Step 1: Scan Secret Word for Unsolved Letters
-// Step 2: Return Boolean Guess Status
-public static boolean isWordGuessed(String secretWord, List<Character> guessedLetters) {
-    for (int i = 0; i < secretWord.length(); i++) {
-        char c = secretWord.charAt(i);
-        if (!guessedLetters.contains(c)) {
-            return false;
-        }
-    }
-    return true;
-}
-```
 
 ### Milestone Checkpoint: Win Condition Logic Verified!
 
@@ -795,64 +602,6 @@ Think of neatly arranging letter tiles in alphabetical order so the player can q
   </ul>
 </div>
 
-<div class="lang-tab python"><span class="lang-dot"></span>Python</div>
-
-```python
-# Task 5 - Format guessed letters display
-# Step 1: Sort Guessed Letters Alphabetically
-# Step 2: Construct Comma-Separated Guessed Letters String
-def format_guessed_letters(guessed_letters):
-    if not guessed_letters:
-        return "None"
-    sorted_letters = sorted(list(guessed_letters))
-    return ", ".join(sorted_letters)
-```
-
-<div class="lang-tab cpp"><span class="lang-dot"></span>C++</div>
-
-```cpp
-// Task 5 - Format guessed letters display
-// Step 1: Sort Guessed Letters Alphabetically
-// Step 2: Construct Comma-Separated Guessed Letters String
-string formatGuessedLetters(const vector<char>& guessedLetters) {
-    if (guessedLetters.empty()) {
-        return "None";
-    }
-    vector<char> sortedGuesses = guessedLetters;
-    sort(sortedGuesses.begin(), sortedGuesses.end());
-    string result = "";
-    for (size_t i = 0; i < sortedGuesses.size(); ++i) {
-        result += sortedGuesses[i];
-        if (i + 1 < sortedGuesses.size()) {
-            result += ", ";
-        }
-    }
-    return result;
-}
-```
-
-<div class="lang-tab java"><span class="lang-dot"></span>Java</div>
-
-```java
-// Task 5 - Format guessed letters display
-// Step 1: Sort Guessed Letters Alphabetically
-// Step 2: Construct Comma-Separated Guessed Letters String
-public static String formatGuessedLetters(List<Character> guessedLetters) {
-    if (guessedLetters.isEmpty()) {
-        return "None";
-    }
-    List<Character> sortedGuesses = new ArrayList<>(guessedLetters);
-    Collections.sort(sortedGuesses);
-    StringBuilder sb = new StringBuilder();
-    for (int i = 0; i < sortedGuesses.size(); i++) {
-        sb.append(sortedGuesses.get(i));
-        if (i + 1 < sortedGuesses.size()) {
-            sb.append(", ");
-        }
-    }
-    return sb.toString();
-}
-```
 
 ### Milestone Checkpoint: Guessed Letters Formatter Functional!
 
@@ -914,55 +663,21 @@ Think of updating an electronic scoreboard that shows the gallows diagram, curre
   </ul>
 </div>
 
-<div class="lang-tab python"><span class="lang-dot"></span>Python</div>
+**Expected Terminal Interaction & Output:**
 
-```python
-# Task 6 - Render gallows and full game board
-# Step 1: Print Gallows ASCII Stage for Current Mistake Count
-# Step 2: Print Masked Word Display
-# Step 3: Print Formatted Guessed Letters
-# Step 4: Print Remaining Lives Tally
-def display_board(wrong_guesses, secret_word, guessed_letters):
-    print("\n" + STAGES[wrong_guesses])
-    print(f"\nWord: {get_masked_word(secret_word, guessed_letters)}")
-    print(f"Guessed letters: {format_guessed_letters(guessed_letters)}")
-    lives_left = MAX_LIVES - wrong_guesses
-    print(f"Lives remaining: {lives_left} / {MAX_LIVES}")
+```text
+  +---+
+  |   |
+      |
+      |
+      |
+      |
+=========
+Word: P _ _ _ E _
+Guessed letters: E, P
+Lives remaining: 6 / 6
 ```
 
-<div class="lang-tab cpp"><span class="lang-dot"></span>C++</div>
-
-```cpp
-// Task 6 - Render gallows and full game board
-// Step 1: Print Gallows ASCII Stage for Current Mistake Count
-// Step 2: Print Masked Word Display
-// Step 3: Print Formatted Guessed Letters
-// Step 4: Print Remaining Lives Tally
-void displayBoard(int wrongGuesses, const string& secretWord, const vector<char>& guessedLetters) {
-    cout << "\n" << STAGES[wrongGuesses] << "\n";
-    cout << "\nWord: " << getMaskedWord(secretWord, guessedLetters) << "\n";
-    cout << "Guessed letters: " << formatGuessedLetters(guessedLetters) << "\n";
-    int livesLeft = MAX_LIVES - wrongGuesses;
-    cout << "Lives remaining: " << livesLeft << " / " << MAX_LIVES << "\n";
-}
-```
-
-<div class="lang-tab java"><span class="lang-dot"></span>Java</div>
-
-```java
-// Task 6 - Render gallows and full game board
-// Step 1: Print Gallows ASCII Stage for Current Mistake Count
-// Step 2: Print Masked Word Display
-// Step 3: Print Formatted Guessed Letters
-// Step 4: Print Remaining Lives Tally
-public static void displayBoard(int wrongGuesses, String secretWord, List<Character> guessedLetters) {
-    System.out.println("\n" + STAGES[wrongGuesses]);
-    System.out.println("\nWord: " + getMaskedWord(secretWord, guessedLetters));
-    System.out.println("Guessed letters: " + formatGuessedLetters(guessedLetters));
-    int livesLeft = MAX_LIVES - wrongGuesses;
-    System.out.println("Lives remaining: " + livesLeft + " / " + MAX_LIVES);
-}
-```
 
 ### Milestone Checkpoint: Visual Board Display Operational!
 
@@ -1012,52 +727,12 @@ Think of a clerk asking for an ID and immediately recording the letters in clean
   </ul>
 </div>
 
-<div class="lang-tab python"><span class="lang-dot"></span>Python</div>
+**Expected Terminal Interaction & Output:**
 
-```python
-# Task 7 - Read and normalize letter input
-# Step 1: Prompt Player for Guess Input
-# Step 2: Trim Whitespace and Convert to Uppercase
-def read_raw_guess():
-    raw_text = input("\nEnter your guess (a single letter): ")
-    return raw_text.strip().upper()
+```text
+Enter your guess (a single letter): e
 ```
 
-<div class="lang-tab cpp"><span class="lang-dot"></span>C++</div>
-
-```cpp
-// Task 7 - Read and normalize letter input
-// Step 1: Prompt Player for Guess Input
-// Step 2: Trim Whitespace and Convert to Uppercase
-string readRawGuess() {
-    cout << "\nEnter your guess (a single letter): ";
-    string input;
-    getline(cin, input);
-    size_t start = input.find_first_not_of(" \t\r\n");
-    size_t end = input.find_last_not_of(" \t\r\n");
-    if (start == string::npos) {
-        return "";
-    }
-    string trimmed = input.substr(start, end - start + 1);
-    for (char& c : trimmed) {
-        c = static_cast<char>(toupper(static_cast<unsigned char>(c)));
-    }
-    return trimmed;
-}
-```
-
-<div class="lang-tab java"><span class="lang-dot"></span>Java</div>
-
-```java
-// Task 7 - Read and normalize letter input
-// Step 1: Prompt Player for Guess Input
-// Step 2: Trim Whitespace and Convert to Uppercase
-public static String readRawGuess(Scanner scanner) {
-    System.out.print("\nEnter your guess (a single letter): ");
-    String input = scanner.nextLine().trim();
-    return input.toUpperCase();
-}
-```
 
 ### Milestone Checkpoint: Raw Input Capture Operational!
 
@@ -1095,37 +770,6 @@ Think of a turnstile gate that only permits a single, valid coin to pass through
   </ul>
 </div>
 
-<div class="lang-tab python"><span class="lang-dot"></span>Python</div>
-
-```python
-# Task 8 - Validate character format
-# Step 1: Verify Exactly One Character Length
-# Step 2: Verify Character is Alphabetic
-def is_valid_format(guess):
-    return len(guess) == 1 and guess.isalpha()
-```
-
-<div class="lang-tab cpp"><span class="lang-dot"></span>C++</div>
-
-```cpp
-// Task 8 - Validate character format
-// Step 1: Verify Exactly One Character Length
-// Step 2: Verify Character is Alphabetic
-bool isValidFormat(const string& guess) {
-    return guess.size() == 1 && isalpha(static_cast<unsigned char>(guess[0]));
-}
-```
-
-<div class="lang-tab java"><span class="lang-dot"></span>Java</div>
-
-```java
-// Task 8 - Validate character format
-// Step 1: Verify Exactly One Character Length
-// Step 2: Verify Character is Alphabetic
-public static boolean isValidFormat(String guess) {
-    return guess.length() == 1 && Character.isLetter(guess.charAt(0));
-}
-```
 
 ### Milestone Checkpoint: Character Format Validation Functional!
 
@@ -1177,78 +821,6 @@ Think of a friendly referee checking the rulebook: if you type something invalid
   </ul>
 </div>
 
-<div class="lang-tab python"><span class="lang-dot"></span>Python</div>
-
-```python
-# Task 9 - Check duplicates and finalize guess input
-# Step 1: Verify Letter Has Not Been Guessed Yet
-# Step 2: Output Friendly Duplicate Notification
-# Step 3: Loop Until Valid Unique Letter Received
-def get_valid_guess(guessed_letters):
-    while True:
-        guess = read_raw_guess()
-        if not is_valid_format(guess):
-            print("Invalid input. Please enter exactly one alphabetic letter (A-Z).")
-        elif guess in guessed_letters:
-            print(f"You already guessed '{guess}'. Try a different letter.")
-        else:
-            return guess
-```
-
-<div class="lang-tab cpp"><span class="lang-dot"></span>C++</div>
-
-```cpp
-// Task 9 - Check duplicates and finalize guess input
-// Step 1: Verify Letter Has Not Been Guessed Yet
-// Step 2: Output Friendly Duplicate Notification
-// Step 3: Loop Until Valid Unique Letter Received
-char getValidGuess(const vector<char>& guessedLetters) {
-    while (true) {
-        string raw = readRawGuess();
-        if (!isValidFormat(raw)) {
-            cout << "Invalid input. Please enter exactly one alphabetic letter (A-Z).\n";
-            continue;
-        }
-        char letter = raw[0];
-        bool alreadyGuessed = false;
-        for (char g : guessedLetters) {
-            if (g == letter) {
-                alreadyGuessed = true;
-                break;
-            }
-        }
-        if (alreadyGuessed) {
-            cout << "You already guessed '" << letter << "'. Try a different letter.\n";
-        } else {
-            return letter;
-        }
-    }
-}
-```
-
-<div class="lang-tab java"><span class="lang-dot"></span>Java</div>
-
-```java
-// Task 9 - Check duplicates and finalize guess input
-// Step 1: Verify Letter Has Not Been Guessed Yet
-// Step 2: Output Friendly Duplicate Notification
-// Step 3: Loop Until Valid Unique Letter Received
-public static char getValidGuess(Scanner scanner, List<Character> guessedLetters) {
-    while (true) {
-        String raw = readRawGuess(scanner);
-        if (!isValidFormat(raw)) {
-            System.out.println("Invalid input. Please enter exactly one alphabetic letter (A-Z).");
-            continue;
-        }
-        char letter = raw.charAt(0);
-        if (guessedLetters.contains(letter)) {
-            System.out.println("You already guessed '" + letter + "'. Try a different letter.");
-        } else {
-            return letter;
-        }
-    }
-}
-```
 
 ### Milestone Checkpoint: Defensive Guess Pipeline Complete!
 
@@ -1305,62 +877,6 @@ Think of preparing a blank game sheet before a word has been chosen: empty secre
   </ul>
 </div>
 
-<div class="lang-tab python"><span class="lang-dot"></span>Python</div>
-
-```python
-# Task 10 - Create the Hangman class constructor
-class Hangman:
-    def __init__(self):
-        # Step 1: Initialize Secret Word Attribute
-        self.secret_word = ""
-        # Step 2: Initialize Guessed Letters Collection Attribute
-        self.guessed_letters = []
-        # Step 3: Initialize Wrong Guesses Counter Attribute
-        self.wrong_guesses = 0
-```
-
-<div class="lang-tab cpp"><span class="lang-dot"></span>C++</div>
-
-```cpp
-// Task 10 - Create the Hangman class constructor
-class Hangman {
-public:
-    string secretWord;
-    vector<char> guessedLetters;
-    int wrongGuesses;
-
-    Hangman() {
-        // Step 1: Initialize Secret Word Attribute
-        secretWord = "";
-        // Step 2: Initialize Guessed Letters Collection Attribute
-        guessedLetters.clear();
-        // Step 3: Initialize Wrong Guesses Counter Attribute
-        wrongGuesses = 0;
-    }
-```
-
-<div class="lang-tab java"><span class="lang-dot"></span>Java</div>
-
-```java
-// Task 10 - Create the Hangman class constructor
-public class Hangman {
-    String secretWord;
-    List<Character> guessedLetters;
-    int wrongGuesses;
-    Random random;
-    Scanner scanner;
-
-    public Hangman() {
-        // Step 1: Initialize Secret Word Attribute
-        this.secretWord = "";
-        // Step 2: Initialize Guessed Letters Collection Attribute
-        this.guessedLetters = new ArrayList<>();
-        // Step 3: Initialize Wrong Guesses Counter Attribute
-        this.wrongGuesses = 0;
-        this.random = new Random();
-        this.scanner = new Scanner(System.in);
-    }
-```
 
 ### Milestone Checkpoint: Hangman State Initialized!
 
@@ -1408,48 +924,6 @@ Think of shuffling a deck of word cards, drawing a new card face-down, and clear
   </ul>
 </div>
 
-<div class="lang-tab python"><span class="lang-dot"></span>Python</div>
-
-```python
-    # Task 11 - Implement word selection and game reset
-    def reset_game(self):
-        # Step 1: Pick Random Word from Word Pool
-        self.secret_word = random.choice(WORDS)
-        # Step 2: Reset Guessed Letters Collection
-        self.guessed_letters = []
-        # Step 3: Reset Wrong Guesses Counter to Zero
-        self.wrong_guesses = 0
-```
-
-<div class="lang-tab cpp"><span class="lang-dot"></span>C++</div>
-
-```cpp
-    // Task 11 - Implement word selection and game reset
-    void resetGame() {
-        // Step 1: Pick Random Word from Word Pool
-        int index = rand() % WORDS.size();
-        secretWord = WORDS[index];
-        // Step 2: Reset Guessed Letters Collection
-        guessedLetters.clear();
-        // Step 3: Reset Wrong Guesses Counter to Zero
-        wrongGuesses = 0;
-    }
-```
-
-<div class="lang-tab java"><span class="lang-dot"></span>Java</div>
-
-```java
-    // Task 11 - Implement word selection and game reset
-    public void resetGame() {
-        // Step 1: Pick Random Word from Word Pool
-        int index = random.nextInt(WORDS.length);
-        secretWord = WORDS[index];
-        // Step 2: Reset Guessed Letters Collection
-        guessedLetters.clear();
-        // Step 3: Reset Wrong Guesses Counter to Zero
-        wrongGuesses = 0;
-    }
-```
 
 ### Milestone Checkpoint: Game Reset & Word Selection Operational!
 
@@ -1508,59 +982,12 @@ Think of checking if a guessed letter appears on the puzzle board: if yes, celeb
   </ul>
 </div>
 
-<div class="lang-tab python"><span class="lang-dot"></span>Python</div>
+**Expected Terminal Interaction & Output:**
 
-```python
-    # Task 12 - Implement single guess processing
-    def process_guess(self, letter):
-        # Step 1: Register Letter in Guessed Letters Collection
-        self.guessed_letters.append(letter)
-        # Step 2: Branch on Match: Announce Correct Guess
-        if letter in self.secret_word:
-            print(f"\nGood guess! '{letter}' is in the word!")
-        # Step 3: Branch on Miss: Increment Wrong Guesses and Announce Miss
-        else:
-            self.wrong_guesses += 1
-            print(f"\nSorry! '{letter}' is not in the word.")
+```text
+Good guess! 'P' is in the word!
 ```
 
-<div class="lang-tab cpp"><span class="lang-dot"></span>C++</div>
-
-```cpp
-    // Task 12 - Implement single guess processing
-    void processGuess(char letter) {
-        // Step 1: Register Letter in Guessed Letters Collection
-        guessedLetters.push_back(letter);
-        // Step 2: Branch on Match: Announce Correct Guess
-        if (secretWord.find(letter) != string::npos) {
-            cout << "\nGood guess! '" << letter << "' is in the word!\n";
-        }
-        // Step 3: Branch on Miss: Increment Wrong Guesses and Announce Miss
-        else {
-            wrongGuesses++;
-            cout << "\nSorry! '" << letter << "' is not in the word.\n";
-        }
-    }
-```
-
-<div class="lang-tab java"><span class="lang-dot"></span>Java</div>
-
-```java
-    // Task 12 - Implement single guess processing
-    public void processGuess(char letter) {
-        // Step 1: Register Letter in Guessed Letters Collection
-        guessedLetters.add(letter);
-        // Step 2: Branch on Match: Announce Correct Guess
-        if (secretWord.indexOf(letter) >= 0) {
-            System.out.println("\nGood guess! '" + letter + "' is in the word!");
-        }
-        // Step 3: Branch on Miss: Increment Wrong Guesses and Announce Miss
-        else {
-            wrongGuesses++;
-            System.out.println("\nSorry! '" + letter + "' is not in the word.");
-        }
-    }
-```
 
 ### Milestone Checkpoint: Guess Processing & Lives Deduction Verified!
 
@@ -1612,56 +1039,23 @@ Think of the tournament master delivering the final verdict: cheering the champi
   </ul>
 </div>
 
-<div class="lang-tab python"><span class="lang-dot"></span>Python</div>
+**Expected Terminal Interaction & Output:**
 
-```python
-    # Task 13 - Announce outcome and reveal secret word
-    def announce_result(self):
-        # Step 1: Render Final Game Board State
-        display_board(self.wrong_guesses, self.secret_word, self.guessed_letters)
-        # Step 2: Evaluate Victory Condition and Congratulate Player
-        if is_word_guessed(self.secret_word, self.guessed_letters):
-            print(f"\nCONGRATULATIONS! You solved the secret word: {self.secret_word}!")
-        # Step 3: Evaluate Defeat Condition and Reveal Secret Word
-        else:
-            print(f"\nGAME OVER! You ran out of lives. The secret word was: {self.secret_word}.")
+```text
+  +---+
+  |   |
+      |
+      |
+      |
+      |
+=========
+Word: P L A N E T
+Guessed letters: A, E, L, N, P, T
+Lives remaining: 6 / 6
+
+CONGRATULATIONS! You solved the secret word: PLANET!
 ```
 
-<div class="lang-tab cpp"><span class="lang-dot"></span>C++</div>
-
-```cpp
-    // Task 13 - Announce outcome and reveal secret word
-    void announceResult() const {
-        // Step 1: Render Final Game Board State
-        displayBoard(wrongGuesses, secretWord, guessedLetters);
-        // Step 2: Evaluate Victory Condition and Congratulate Player
-        if (isWordGuessed(secretWord, guessedLetters)) {
-            cout << "\nCONGRATULATIONS! You solved the secret word: " << secretWord << "!\n";
-        }
-        // Step 3: Evaluate Defeat Condition and Reveal Secret Word
-        else {
-            cout << "\nGAME OVER! You ran out of lives. The secret word was: " << secretWord << ".\n";
-        }
-    }
-```
-
-<div class="lang-tab java"><span class="lang-dot"></span>Java</div>
-
-```java
-    // Task 13 - Announce outcome and reveal secret word
-    public void announceResult() {
-        // Step 1: Render Final Game Board State
-        displayBoard(wrongGuesses, secretWord, guessedLetters);
-        // Step 2: Evaluate Victory Condition and Congratulate Player
-        if (isWordGuessed(secretWord, guessedLetters)) {
-            System.out.println("\nCONGRATULATIONS! You solved the secret word: " + secretWord + "!");
-        }
-        // Step 3: Evaluate Defeat Condition and Reveal Secret Word
-        else {
-            System.out.println("\nGAME OVER! You ran out of lives. The secret word was: " + secretWord + ".");
-        }
-    }
-```
 
 ### Milestone Checkpoint: Game Outcome Presentation Operational!
 
@@ -1726,72 +1120,27 @@ Think of the conductor leading an orchestra through every movement of a symphony
   </ul>
 </div>
 
-<div class="lang-tab python"><span class="lang-dot"></span>Python</div>
+**Expected Terminal Interaction & Output:**
 
-```python
-    # Task 14 - Construct single-game turn loop
-    def play_round(self):
-        # Step 1: Reset Game State for New Match
-        self.reset_game()
-        # Step 2: Print Match Start Banner
-        print("\n===== NEW HANGMAN GAME =====")
-        print(f"A secret word has been chosen with {len(self.secret_word)} letters. Good luck!")
+```text
+===== NEW HANGMAN GAME =====
+A secret word has been chosen with 6 letters. Good luck!
 
-        # Step 3: Run Turn Loop While Alive and Unsolved
-        while self.wrong_guesses < MAX_LIVES and not is_word_guessed(self.secret_word, self.guessed_letters):
-            display_board(self.wrong_guesses, self.secret_word, self.guessed_letters)
-            guess = get_valid_guess(self.guessed_letters)
-            self.process_guess(guess)
+  +---+
+  |   |
+      |
+      |
+      |
+      |
+=========
+Word: _ _ _ _ _ _
+Guessed letters: None
+Lives remaining: 6 / 6
 
-        # Step 4: Call Outcome Announcer
-        self.announce_result()
+Enter your guess (a single letter): e
+Good guess! 'E' is in the word!
 ```
 
-<div class="lang-tab cpp"><span class="lang-dot"></span>C++</div>
-
-```cpp
-    // Task 14 - Construct single-game turn loop
-    void playRound() {
-        // Step 1: Reset Game State for New Match
-        resetGame();
-        // Step 2: Print Match Start Banner
-        cout << "\n===== NEW HANGMAN GAME =====\n";
-        cout << "A secret word has been chosen with " << secretWord.size() << " letters. Good luck!\n";
-
-        // Step 3: Run Turn Loop While Alive and Unsolved
-        while (wrongGuesses < MAX_LIVES && !isWordGuessed(secretWord, guessedLetters)) {
-            displayBoard(wrongGuesses, secretWord, guessedLetters);
-            char guess = getValidGuess(guessedLetters);
-            processGuess(guess);
-        }
-
-        // Step 4: Call Outcome Announcer
-        announceResult();
-    }
-```
-
-<div class="lang-tab java"><span class="lang-dot"></span>Java</div>
-
-```java
-    // Task 14 - Construct single-game turn loop
-    public void playRound() {
-        // Step 1: Reset Game State for New Match
-        resetGame();
-        // Step 2: Print Match Start Banner
-        System.out.println("\n===== NEW HANGMAN GAME =====");
-        System.out.println("A secret word has been chosen with " + secretWord.length() + " letters. Good luck!");
-
-        // Step 3: Run Turn Loop While Alive and Unsolved
-        while (wrongGuesses < MAX_LIVES && !isWordGuessed(secretWord, guessedLetters)) {
-            displayBoard(wrongGuesses, secretWord, guessedLetters);
-            char guess = getValidGuess(scanner, guessedLetters);
-            processGuess(guess);
-        }
-
-        // Step 4: Call Outcome Announcer
-        announceResult();
-    }
-```
 
 ### Milestone Checkpoint: Single-Game Turn Loop Complete!
 
@@ -1847,74 +1196,15 @@ Think of an arcade machine flashing "CONTINUE? (Y/N)" after a game ends.
   </ul>
 </div>
 
-<div class="lang-tab python"><span class="lang-dot"></span>Python</div>
+**Expected Terminal Interaction & Output:**
 
-```python
-    # Task 15 - Implement rematch prompt
-    @staticmethod
-    def ask_replay():
-        # Step 1: Run Interactive Replay Prompt Loop
-        while True:
-            # Step 2: Read and Normalize Confirmation Input
-            answer = input("\nPlay again? (y/n): ").strip().lower()
-            # Step 3: Return Boolean Replay Decision
-            if answer == "y":
-                return True
-            elif answer == "n":
-                return False
-            print("Please type y or n.")
+```text
+Play again? (y/n): maybe
+Please type y or n.
+
+Play again? (y/n): y
 ```
 
-<div class="lang-tab cpp"><span class="lang-dot"></span>C++</div>
-
-```cpp
-    // Task 15 - Implement rematch prompt
-    static bool askReplay() {
-        // Step 1: Run Interactive Replay Prompt Loop
-        while (true) {
-            // Step 2: Read and Normalize Confirmation Input
-            cout << "\nPlay again? (y/n): ";
-            string answer;
-            getline(cin, answer);
-            size_t start = answer.find_first_not_of(" \t\r\n");
-            size_t end = answer.find_last_not_of(" \t\r\n");
-            string trimmed = (start == string::npos) ? "" : answer.substr(start, end - start + 1);
-            for (char& c : trimmed) {
-                c = static_cast<char>(tolower(static_cast<unsigned char>(c)));
-            }
-            // Step 3: Return Boolean Replay Decision
-            if (trimmed == "y") {
-                return true;
-            }
-            if (trimmed == "n") {
-                return false;
-            }
-            cout << "Please type y or n.\n";
-        }
-    }
-```
-
-<div class="lang-tab java"><span class="lang-dot"></span>Java</div>
-
-```java
-    // Task 15 - Implement rematch prompt
-    public static boolean askReplay(Scanner scanner) {
-        // Step 1: Run Interactive Replay Prompt Loop
-        while (true) {
-            // Step 2: Read and Normalize Confirmation Input
-            System.out.print("\nPlay again? (y/n): ");
-            String answer = scanner.nextLine().trim().toLowerCase();
-            // Step 3: Return Boolean Replay Decision
-            if (answer.equals("y")) {
-                return true;
-            }
-            if (answer.equals("n")) {
-                return false;
-            }
-            System.out.println("Please type y or n.");
-        }
-    }
-```
 
 ### Milestone Checkpoint: Rematch Prompt Functional!
 
@@ -1972,60 +1262,13 @@ Think of sitting down for a complete tournament session, playing as many rounds 
   </ul>
 </div>
 
-<div class="lang-tab python"><span class="lang-dot"></span>Python</div>
+**Expected Terminal Interaction & Output:**
 
-```python
-    # Task 16 - Construct multi-game session loop
-    def play_many(self):
-        # Step 1: Run Indefinite Session Loop
-        while True:
-            # Step 2: Execute Game Lifecycle
-            self.play_round()
-            # Step 3: Prompt for Rematch Confirmation
-            if not self.ask_replay():
-                # Step 4: Print Session Farewell on Exit
-                print("\nThanks for playing Hangman!")
-                break
+```text
+Play again? (y/n): n
+Thanks for playing Hangman!
 ```
 
-<div class="lang-tab cpp"><span class="lang-dot"></span>C++</div>
-
-```cpp
-    // Task 16 - Construct multi-game session loop
-    void playMany() {
-        // Step 1: Run Indefinite Session Loop
-        while (true) {
-            // Step 2: Execute Game Lifecycle
-            playRound();
-            // Step 3: Prompt for Rematch Confirmation
-            if (!askReplay()) {
-                // Step 4: Print Session Farewell on Exit
-                cout << "\nThanks for playing Hangman!\n";
-                break;
-            }
-        }
-    }
-};
-```
-
-<div class="lang-tab java"><span class="lang-dot"></span>Java</div>
-
-```java
-    // Task 16 - Construct multi-game session loop
-    public void playMany() {
-        // Step 1: Run Indefinite Session Loop
-        while (true) {
-            // Step 2: Execute Game Lifecycle
-            playRound();
-            // Step 3: Prompt for Rematch Confirmation
-            if (!askReplay(scanner)) {
-                // Step 4: Print Session Farewell on Exit
-                System.out.println("\nThanks for playing Hangman!");
-                break;
-            }
-        }
-    }
-```
 
 ### Milestone Checkpoint: Multi-Game Session Engine Complete!
 
@@ -2079,54 +1322,14 @@ Think of turning the ignition key in an automobile: the engine hums to life, and
   </ul>
 </div>
 
-<div class="lang-tab python"><span class="lang-dot"></span>Python</div>
+**Expected Terminal Interaction & Output:**
 
-```python
-# Task 17 - Assemble the main() entry point
-def main():
-    # Step 1: Call Welcome Banner Function
-    print_welcome()
-    # Step 2: Instantiate Hangman Game Manager
-    game = Hangman()
-    # Step 3: Launch Multi-Game Session Loop
-    game.play_many()
-
-
-if __name__ == "__main__":
-    main()
+```text
+Welcome to Hangman!
+===== NEW HANGMAN GAME =====
+A secret word has been chosen with 6 letters. Good luck!
 ```
 
-<div class="lang-tab cpp"><span class="lang-dot"></span>C++</div>
-
-```cpp
-// Task 17 - Assemble the main() entry point
-int main() {
-    srand(static_cast<unsigned int>(time(nullptr)));
-
-    // Step 1: Call Welcome Banner Function
-    printWelcome();
-    // Step 2: Instantiate Hangman Game Manager
-    Hangman game;
-    // Step 3: Launch Multi-Game Session Loop
-    game.playMany();
-    return 0;
-}
-```
-
-<div class="lang-tab java"><span class="lang-dot"></span>Java</div>
-
-```java
-    // Task 17 - Assemble the main() entry point
-    public static void main(String[] args) {
-        // Step 1: Call Welcome Banner Function
-        printWelcome();
-        // Step 2: Instantiate Hangman Game Manager
-        Hangman game = new Hangman();
-        // Step 3: Launch Multi-Game Session Loop
-        game.playMany();
-    }
-}
-```
 
 ### Milestone Checkpoint: Full Application Experience Achieved!
 
